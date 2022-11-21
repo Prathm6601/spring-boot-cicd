@@ -22,14 +22,14 @@ pipeline {
         stage("Deploy on Test"){
             steps{
                 // deploy on container -> plugin
-            deploy adapters: [tomcat9(credentialsId: 'bbf8c4a1-ea56-41f5-9ea2-3bf71d38343f', path: '', url: 'http://localhost:8081')], contextPath: '/app', war: '**/*.war'              
+            deploy adapters: [tomcat9(credentialsId: 'localhost', path: '', url: 'http://localhost:8081')], contextPath: '/app', war: '/var/lib/jenkins/workspace/spring-boot/target/SpringBootApp.war'
             }
             
         }
         stage("Deploy on Prod"){
             steps{
                 // deploy on container -> plugin
-            deploy adapters: [tomcat9(credentialsId: 'bbf8c4a1-ea56-41f5-9ea2-3bf71d38343f', path: '', url: 'http://localhost:8081')], contextPath: '/app', war: '**/*.war'
+            deploy adapters: [tomcat9(credentialsId: 'localhost', path: '', url: 'http://localhost:8081')], contextPath: '/app', war: '/var/lib/jenkins/workspace/spring-boot/target/SpringBootApp.war'
             }
         }
     }
